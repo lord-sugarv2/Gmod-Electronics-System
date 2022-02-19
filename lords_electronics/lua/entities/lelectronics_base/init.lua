@@ -55,3 +55,6 @@ end
 
 function ENT:OnActive() end -- For u to override
 function ENT:OnDeactivate() end -- For u to override
+
+function ENT:SetData(data) self.Data = data end -- For u to override but do as u wish
+function ENT:GetData() return self.Data end -- For u to override
