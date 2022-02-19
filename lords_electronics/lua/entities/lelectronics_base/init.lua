@@ -41,6 +41,7 @@ end
 
 function ENT:OnRemove()
 	-- If we are giving to an entity then stop that connection
+	self:SetData(false)
 	local output = self:GetOutput()
 	if IsValid(output) then
 		output:SetActiveStatus(false) -- Make the ent have no power
@@ -54,7 +55,12 @@ function ENT:OnRemove()
 end
 
 function ENT:OnActive() end -- For u to override
-function ENT:OnDeactivate() end -- For u to override
+function ENT:OnDeactivate()
+	if IsValid(self:GetOutput()) then
+		self:GetOutput():SetActiveStatus(false)
+		self:GetOutput():SetData(false)
+	end
+end
 
 function ENT:SetData(data) self.Data = data end -- For u to override but do as u wish
 function ENT:GetData() return self.Data end -- For u to override

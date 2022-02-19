@@ -19,23 +19,26 @@ function ENT:Initialize()
 	self:SetVars(true, true)
 end
 
--- i aint calling player.GetAll every tick cuz i dont want lag
 function ENT:Think()
 	if not self:GetActive() then return end
+	local val = false
+	local tbl = {}
 	if CurTime() > self.Timer then
-		self.Timer = CurTime() + 2 -- Update every 2 seconds
-
-		local entpos = self:GetPos()
-		local ply = {false, math.huge}
-		for k, v in ipairs(player.GetAll()) do
-			local dist = v:GetPos():Distance(entpos)
-			if dist < ply[2] then ply = {v, dist} end
+		for k, v in ipairs(ents.FindInSphere(self:GetPos(), self.WithinRange)) do
+			if not v:IsPlayer() then continue end
+			val = true
+			table.insert(tbl, v)
 		end
-
-		if not ply then return end
-		self:SetClosestPlayer(ply[1])
-		if IsValid(self:GetOutput()) then
-			self:GetOutput():SetData(ply[1])
+		self.Timer = CurTime() + 2
+		
+		local output = self:GetOutput()
+		if not IsValid(output) then return end
+		if val then
+			output:SetData(true)
+			output:SetActiveStatus(true)
+		else
+			output:SetData(false)
+			output:SetActiveStatus(false)
 		end
 	end
 end

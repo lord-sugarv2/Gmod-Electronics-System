@@ -40,17 +40,3 @@ function ENT:SetActiveStatus(bool, output)
 		end
 	end)
 end
-
-function ENT:OnRemove()
-	-- If we are giving to an entity then stop that connection
-	local output = self:GetOutput()
-	if IsValid(output) then
-		output:SetActiveStatus(false, output) -- Make the ent have no power
-		output:SetInput(nil) -- Make it so the ent has no input
-	end
-
-	local input = self:GetInput()
-	if IsValid(input) then
-		input:SetOutput(nil) -- Get the ent that is giving us power and make it so we dont exist
-	end
-end

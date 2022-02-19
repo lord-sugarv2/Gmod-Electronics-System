@@ -3,7 +3,7 @@ AddCSLuaFile("cl_init.lua")
 include("shared.lua")
 
 function ENT:Initialize()
-    self:SetModel("models/kobilica/wiremonitorbig.mdl")
+    self:SetModel("models/bull/various/subwoofer.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
@@ -14,19 +14,15 @@ function ENT:Initialize()
 		physics:Wake()
 	end
 
-	self:SetVars(false, true)
+	self.Timer = 0
+
+	self:SetVars(true, true)
 end
 
-function ENT:SetData(data)
+function ENT:Think()
 	if not self:GetActive() then return end
-	self:SetText(data)
-end
-
-function ENT:OnDeactivate()
-	if IsValid(self:GetOutput()) then
-		self:GetOutput():SetActiveStatus(false)
-		self:GetOutput():SetData(false)
+	if CurTime() > self.Timer then
+		self:EmitSound("buttons/button17.wav")
+		self.Timer = CurTime() + 2
 	end
-
-	self:SetText("")
 end
