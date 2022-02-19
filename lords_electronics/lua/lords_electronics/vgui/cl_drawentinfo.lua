@@ -17,13 +17,13 @@ hook.Add("HUDPaint", "LElectronics:DrawInfo", function()
     local int = 5
     if ent:GetHasInput() then
         local input = ent:GetInput()
-        draw.SimpleText("Input: "..(IsValid(input) and input:GetClass() or "N/A"), "DermaLarge", w/2, 300+int, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+        draw.SimpleText("Input: "..(IsValid(input) and input.PrintName or "N/A"), "DermaLarge", w/2, 300+int, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
         int = int + 35
     end
 
     if ent:GetHasOutput() then
         local output = ent:GetOutput()
-        draw.SimpleText("Output: "..(IsValid(output) and output:GetClass() or "N/A"), "DermaLarge", w/2, 300+int, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+        draw.SimpleText("Output: "..(IsValid(output) and output.PrintName or "N/A"), "DermaLarge", w/2, 300+int, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
         int = int + 35
     end
 

@@ -16,3 +16,8 @@ function ENT:Initialize()
 
 	self:SetVars(true, true)
 end
+
+function ENT:OnActive()
+	LElectronics:Explode(self)
+	self:Remove()
+end

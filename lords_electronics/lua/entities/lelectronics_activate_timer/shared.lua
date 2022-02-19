@@ -1,6 +1,7 @@
 ENT.Type = "anim"
+ENT.TimerTime = 2
 ENT.Base = "lelectronics_base"
-ENT.PrintName = "Explosive"
+ENT.PrintName = ENT.TimerTime.."s Activation Delay"
 ENT.Spawnable = true
 ENT.Category = "LElectronics"
 

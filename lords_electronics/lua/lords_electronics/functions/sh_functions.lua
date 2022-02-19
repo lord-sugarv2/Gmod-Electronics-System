@@ -1,4 +1,4 @@
-function LElectronics:AddElectronic(class)
+function LElectronics:AddElectronic(class, name)
     LElectronics.Electronics[class] = true
 end
 
