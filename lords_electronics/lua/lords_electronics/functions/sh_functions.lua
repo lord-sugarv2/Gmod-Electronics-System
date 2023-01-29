@@ -8,7 +8,7 @@ function LElectronics:IsElectronic(class)
 end
 
 function LElectronics:GoodDist(ply, ent)
-    if ply:GetPos():Distance(ent:GetPos()) > 100 then return false end
+    if ply:GetPos():Distance(ent:GetPos()) > 500 then return false end
     return true
 end
 
